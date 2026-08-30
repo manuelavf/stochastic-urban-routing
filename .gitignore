@@ -1,0 +1,34 @@
+# --- Datos ---
+# Nunca subir el parquet original de la TLC (pesa ~175MB y el enunciado lo prohíbe)
+data/raw/*
+!data/raw/.gitkeep
+
+# Datos procesados intermedios grandes (opcional: descomenta si no quieres versionarlos)
+# data/processed/*
+# !data/processed/.gitkeep
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- Jupyter ---
+.ipynb_checkpoints
+
+# --- Solvers / logs de optimización ---
+*.log
+*.lp
+*.mps
+gurobi.log
+
+# --- Sistema ---
+.DS_Store
+Thumbs.db
+
+# --- Editor ---
+.vscode/
+.idea/

@@ -1,0 +1,13 @@
+# --- Datos y lectura de Parquet ---
+duckdb
+pandas
+pyarrow
+numpy
+
+# --- Jupyter / kernel ---
+jupyter
+ipykernel
+
+# --- Visualización (se usará en notebooks posteriores) ---
+matplotlib
+seaborn
