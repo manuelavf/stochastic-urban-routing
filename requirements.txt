@@ -11,3 +11,7 @@ ipykernel
 # --- Visualización (se usará en notebooks posteriores) ---
 matplotlib
 seaborn
+
+# --- Optimización (MILP / L-shaped) ---
+pulp 
+scipy
