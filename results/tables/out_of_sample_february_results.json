@@ -1,0 +1,30 @@
+{
+  "K_test": 1000,
+  "seed_feb_test": 2015,
+  "pool_qc_feb": {
+    "n_arcs_present": 110,
+    "min_pool_size": 90
+  },
+  "C_hat_Feb_star": 70.91725673333332,
+  "C_hat_Feb_prom": 70.91725673333332,
+  "Delta_Feb": 0.0,
+  "paired_diff": {
+    "D_bar": 0.0,
+    "s_D": 0.0,
+    "se_D": 0.0,
+    "ci_95_lower": 0.0,
+    "ci_95_upper": 0.0
+  },
+  "resource_usage_frequencies_out_of_sample": {
+    "x_star": {
+      "overtime": 0.992,
+      "emergency": 0.0,
+      "outsourcing": 0.515
+    },
+    "x_prom": {
+      "overtime": 0.992,
+      "emergency": 0.0,
+      "outsourcing": 0.515
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "K": 50,
+  "status": "Optimal",
+  "objective": 52.88447674799998,
+  "solve_time_sec": 0.5438430309295654,
+  "n_variables": 1220,
+  "n_constraints": 1162,
+  "route": [
+    0,
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    10,
+    9,
+    8,
+    0
+  ],
+  "freq_overtime": 0.92,
+  "freq_emergency": 0.0,
+  "freq_outsourcing": 0.22
+}
