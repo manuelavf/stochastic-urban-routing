@@ -11,6 +11,7 @@ ipykernel
 # --- Visualización (se usará en notebooks posteriores) ---
 matplotlib
 seaborn
+contextily
 
 # --- Optimización (MILP / L-shaped) ---
 pulp 
