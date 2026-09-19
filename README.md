@@ -5,9 +5,7 @@ Modelo de **optimización estocástica de dos etapas** para el ruteo de una cuad
 - **Primera etapa:** decisión binaria de ruteo (qué arcos usar) antes de conocer el tráfico del día.
 - **Segunda etapa:** decisiones continuas de recurso (trabajo directo, tercerización, tiempo adicional/emergencia) una vez se revelan los tiempos de viaje.
 
-El proyecto construye una aproximación por promedio muestral (**SAA**), valida una formulación extensa como **MILP**, implementa el algoritmo **Integer L-shaped** (descomposición de Benders con recurso entero), y compara la solución estocástica contra una aproximación determinista basada en el perfil promedio de tiempos.
-
-> Proyecto desarrollado para el curso de Optimización Estocástica — Maestría en Matemáticas Aplicadas, Universidad EAFIT (2026-2).
+El proyecto construye una aproximación por promedio muestral (**SAA**), valida una formulación extensa como **MILP**, implementa el algoritmo **Integer L-shaped** y compara la solución estocástica contra una aproximación determinista basada en el perfil promedio de tiempos.
 
 ---
 
@@ -28,10 +26,13 @@ stochastic-urban-routing/
 │   ├── 04_lshaped.ipynb            # Algoritmo Integer L-shaped
 │   ├── 05_main_experiment.ipynb    # Experimento principal K=200, perfil promedio, VSS
 │   └── 06_out_of_sample.ipynb      # Validación temporal con datos de febrero
-├── src/
-│   └── utils.py                    # Funciones compartidas entre notebooks
-└── report/
-    └── informe_tecnico.pdf         # Entregable principal
+│   └── 07_report_figures.ipynb     # Figuras e información del informe  
+├── results/                        
+│   ├── figures/            # Figuras para el informe
+│   └── logs/               # Trazas de convergencia
+│   └── tables/             # Información para el informes
+└── 
+
 ```
 
 Cada notebook lee las salidas del anterior desde `data/processed/`, así que deben ejecutarse **en orden** la primera vez.
@@ -78,6 +79,7 @@ notebooks/03_extensive_form.ipynb      →  validación con K=50
 notebooks/04_lshaped.ipynb             →  algoritmo Integer L-shaped
 notebooks/05_main_experiment.ipynb     →  experimento principal, perfil promedio, VSS_K
 notebooks/06_out_of_sample.ipynb       →  validación con datos de febrero
+notebooks/07_report_figures.ipynb      →  figuras e información para el informe
 ```
 
 El primer notebook descarga automáticamente el archivo oficial de la TLC (~175 MB) si no lo encuentra en `data/raw/`. La descarga solo se hace una vez.
@@ -86,7 +88,7 @@ El primer notebook descarga automáticamente el archivo oficial de la TLC (~175 
 
 ## Datos
 
-Los datos crudos (`data/raw/`) **no se versionan** en este repositorio, ya que corresponden a archivos públicos de gran tamaño publicados por la TLC:
+Los datos crudos (`data/raw/`) no se versionan en este repositorio, ya que corresponden a archivos públicos de gran tamaño publicados por la TLC:
 
 - Enero 2015: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2015-01.parquet
 - Febrero 2015: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2015-02.parquet
@@ -95,7 +97,7 @@ Los datos procesados (pools, escenarios, costos por arco) sí se versionan en `d
 
 ---
 
-## Metodología (resumen)
+## Metodología 
 
 1. **Datos y pools:** se filtran viajes de taxi entre las 11 ubicaciones del problema (depósito + 10 sitios), en horario laboral entre semana, y se construye un pool empírico de tiempos de viaje por cada uno de los 110 arcos dirigidos.
 2. **Escenarios:** se muestrean $K$ escenarios sintéticos de tiempos de viaje, con reemplazo, de forma independiente entre arcos.
@@ -103,8 +105,6 @@ Los datos procesados (pools, escenarios, costos por arco) sí se versionan en `d
 4. **Validación algorítmica:** se comparan la formulación extensa (MILP monolítico) y el algoritmo Integer L-shaped sobre la misma muestra (K=50), verificando que los valores objetivo coincidan.
 5. **Experimento principal (K=200):** se obtiene la ruta óptima estocástica $x^\star$ y se compara contra una ruta determinista $x^{prom}$ basada en el perfil promedio de tiempos, calculando el valor de la solución estocástica (VSS).
 6. **Validación fuera de muestra:** ambas rutas se evalúan, sin reoptimizar, sobre 1000 escenarios sintéticos generados a partir de datos de febrero de 2015.
-
-Detalles completos de la formulación matemática, el algoritmo y los resultados en [`report/informe_tecnico.pdf`](report/informe_tecnico.pdf).
 
 ---
 
@@ -115,7 +115,3 @@ Detalles completos de la formulación matemática, el algoritmo y los resultados
 - Kleywegt, A. J., Shapiro, A., & Homem-de-Mello, T. (2002). The sample average approximation method for stochastic discrete optimization. *SIAM Journal on Optimization*, 12(2), 479-502.
 - Birge, J. R., & Louveaux, F. (2011). *Introduction to Stochastic Programming* (2nd ed.). Springer.
 - NYC Taxi & Limousine Commission. [TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page).
-
-## Licencia
-
-Este proyecto se distribuye bajo la licencia especificada en [`LICENSE`](LICENSE).
